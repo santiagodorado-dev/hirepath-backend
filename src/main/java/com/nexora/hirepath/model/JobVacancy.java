@@ -14,6 +14,7 @@ import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -41,6 +42,10 @@ public class JobVacancy {
 
     @Column(name = "published_at", nullable = false, updatable = false)
     private LocalDate publishedAt;
+
+    @Column(name = "salary", nullable = false)
+    @Positive(message = "Salary must be greater than 0")
+    private Double salary;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "job_vacancy_status", nullable = false)
